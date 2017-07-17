@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/padrig64/MiniBus.svg?branch=master)](https://travis-ci.org/padrig64/MiniBus)
+
 Yet another in-JVM pub/sub event bus for Java 8.
 
 Note that it is **not** ready for production use.
