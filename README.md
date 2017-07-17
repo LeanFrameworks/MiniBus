@@ -4,8 +4,8 @@ Note that it is **not** ready for production use.
 
 # Principles
 
-* **Publishers** (producers) send events for particular **topics** on different **channels** of the **event bus**.
-* **Subscribers** (consumers) receive the events that they are interested in and that they did not **filter** out.
+* **Publishers** (producers) send events on particular **topics** on particular **channels** of the **event bus**.
+* **Subscribers** (consumers) receive the events that they subscribed for and did not **filter** out.
 
 # Features
 
@@ -15,7 +15,7 @@ Note that it is **not** ready for production use.
 * **Topic hierarchy:** Topics can have a parent topic. A parent topic (e.g. "Geography") is said to cover its child
 topics (e.g. "France", "The Netherlands"). Entities subscribing to parent topics will receive events for all child
 topics. But entities subscribing to a child topic will not receive events for its parent or peer topics.
-* **Typed topics:** The topics defined the type of the content being dispatched.
+* **Typed topics:** Topics define the type of the content being dispatched.
 * **Filtering:** Event filters can be used and based on topics, event classes, content classes, channels or anything you
 like.
 * **Channels:** Channels may optionally be used for dispatching and can serve as a filter.
