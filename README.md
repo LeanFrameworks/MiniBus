@@ -1,4 +1,4 @@
-Yet another in-memory pub/sub event bus for Java 8.
+Yet another in-JVM pub/sub event bus for Java 8.
 
 Note that it is **not** ready for production use.
 
