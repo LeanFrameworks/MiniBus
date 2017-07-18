@@ -5,17 +5,61 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>minibus</groupId>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <groupId>com.github.padrig64</groupId>
     <artifactId>minibus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>MiniBus</name>
+    <description>In-JVM pub/sub event bus for Java 8</description>
+    <url>https://github.com/padrig64/MiniBus</url>
+
+    <licenses>
+        <license>
+            <name>Simplified BSD License</name>
+            <url>https://raw.github.com/padrig64/MiniBus/master/LICENSE.md</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:padrig64/MiniBus.git</connection>
+        <developerConnection>scm:git:git@github.com:padrig64/MiniBus.git</developerConnection>
+        <url>http://github.com/padrig64/minibus/tree/master</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>padrig64</id>
+            <name>Patrick Moawad</name>
+        </developer>
+    </developers>
 
     <properties>
-        <java.compiler.version>1.8</java.compiler.version>
-        <mavencompilerplugin.version>3.1</mavencompilerplugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <junit.version>4.11</junit.version>
-        <mockito.version>1.9.5</mockito.version>
-        <slf4j.version>1.7.12</slf4j.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- Maven plugins -->
+
+        <mavencompilerplugin.version>3.6.1</mavencompilerplugin.version>
+        <mavenjavadocplugin.version>2.10.4</mavenjavadocplugin.version>
+        <mavengpgplugin.version>1.6</mavengpgplugin.version>
+        <mavenreleaseplugin.version>2.5.3</mavenreleaseplugin.version>
+        <mavensourceplugin.version>3.0.1</mavensourceplugin.version>
+
+        <!-- Dependencies -->
+
+        <junit.version>4.12</junit.version>
+        <mockito.version>1.10.19</mockito.version>
+        <slf4j.version>1.7.25</slf4j.version>
     </properties>
 
     <dependencies>
@@ -38,6 +82,7 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>${mockito.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -49,23 +94,76 @@
     </dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${mavensourceplugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${mavenjavadocplugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${mavencompilerplugin.version}</version>
-                    <configuration>
-                        <source>${java.compiler.version}</source>
-                        <target>${java.compiler.version}</target>
-                        <compilerVersion>${java.compiler.version}</compilerVersion>
-                        <compilerArgs>
-                            <arg>-Xlint:unchecked</arg>
-                            <arg>-Xlint:deprecation</arg>
-                        </compilerArgs>
-                    </configuration>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${mavenreleaseplugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+    <!-- PGP signatures generation -->
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${mavengpgplugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -40,9 +40,12 @@ Here is the simplest example to get started:
 // Create a topic
 Topic<String> logEntry = new SimpleTopic<>();
 
-// Add an event listener for the topic
+// Add an event handler for that topic
 StaticEventBus.subscribe(logEntry, e -> System.out.println("Something happened: " + e.getContent()));
 
 // Publish something on that topic
 StaticEventBus.publish(logEntry, "this is the reason");
+
+// Dispose all used resources
+StaticEventBus.dispose();
 ```
