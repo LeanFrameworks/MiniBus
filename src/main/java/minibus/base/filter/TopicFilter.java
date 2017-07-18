@@ -37,43 +37,101 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Event filter implementation based on topics.
+ *
+ * @param <C> Type of content in the event.
+ */
 public class TopicFilter<C> implements EventFilter<C> {
 
+    /**
+     * True if the filter should accept events for the given topics, false if it should reject events for the given
+     * topics.
+     *
+     * @see #topics
+     */
     private final boolean accept;
 
+    /**
+     * Topics for which the events are either accepted or rejected.
+     *
+     * @see #accept
+     */
     private final Set<Topic<? extends C>> topics;
 
+    /**
+     * Constructor.
+     *
+     * @param topic Topic for which the events are either accepted.
+     */
     public TopicFilter(Topic<? extends C> topic) {
         this(Collections.singleton(topic));
     }
 
+    /**
+     * Constructor.
+     *
+     * @param topics Topics for which the events are either accepted.
+     */
     @SafeVarargs
     public TopicFilter(Topic<? extends C>... topics) {
         this(Arrays.asList(topics));
     }
 
+    /**
+     * Constructor.
+     *
+     * @param topics Topics for which the events are either accepted.
+     */
     public TopicFilter(Collection<Topic<? extends C>> topics) {
         this(true, topics);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param accept True if the filter should accept events for the given topics, false if it should reject events for
+     *               the given topics.
+     * @param topics Topics for which the events are either accepted or rejected.
+     */
     @SafeVarargs
     public TopicFilter(boolean accept, Topic<? extends C>... topics) {
         this(accept, Arrays.asList(topics));
     }
 
+    /**
+     * Constructor.
+     *
+     * @param accept True if the filter should accept events for the given topics, false if it should reject events for
+     *               the given topics.
+     * @param topics Topics for which the events are either accepted or rejected.
+     */
     public TopicFilter(boolean accept, Collection<Topic<? extends C>> topics) {
         this.accept = accept;
         this.topics = new HashSet<>(topics);
     }
 
+    /**
+     * Adds the specified topic for which the events should either be accepted or rejected.
+     *
+     * @param topic Event topic to be added.
+     */
     public void addTopic(Topic<? extends C> topic) {
         topics.add(topic);
     }
 
+    /**
+     * Removes the specified topic for which the events should now be either rejected or accepted.
+     *
+     * @param topic Event topic to be removed.
+     */
     public void removeTopic(Topic<? extends C> topic) {
         topics.remove(topic);
     }
 
+    /**
+     * @see EventFilter#accept(Event)
+     */
     @Override
     public boolean accept(Event<C> event) {
         boolean result;

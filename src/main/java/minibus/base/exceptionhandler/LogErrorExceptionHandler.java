@@ -32,18 +32,43 @@ import minibus.api.ExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Exception handler to will log the exception as errors.
+ */
 public class LogErrorExceptionHandler implements ExceptionHandler {
 
+    /**
+     * Logger to be used to log to be exception.
+     */
     private final Logger logger;
 
+    /**
+     * Constructor.
+     * <p>
+     * A logger dedicated to this class will be used.
+     */
     public LogErrorExceptionHandler() {
-        this(LoggerFactory.getLogger(ExceptionHandler.class));
+        this(null);
     }
 
+    /**
+     * Constructor.
+     * <p>
+     * If no logger is given, a logger dedicated to this class will be used.
+     *
+     * @param logger Logger to be used to log to be exception.
+     */
     public LogErrorExceptionHandler(Logger logger) {
-        this.logger = logger;
+        if (logger == null) {
+            this.logger = LoggerFactory.getLogger(ExceptionHandler.class);
+        } else {
+            this.logger = logger;
+        }
     }
 
+    /**
+     * @see ExceptionHandler#handleException(Throwable, Event)
+     */
     @Override
     public void handleException(Throwable throwable, Event<?> event) {
         logger.error("Exception while dispatching event '" + event + "'", throwable);

@@ -47,6 +47,20 @@ public abstract class AbstractDispatcher implements Dispatcher {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDispatcher.class);
 
+    /**
+     * Passes the specified event to the specified event handler if the specified event filter accepts it.
+     * <p>
+     * If an exception is thrown during the processing of the event, the specified exception handlers will be used.
+     * <p>
+     * In theory, this method can be called by any concrete implementation of this class, since it can be considered as
+     * a basic building block of any dispatch logic.
+     *
+     * @param event             Event to be processed.
+     * @param filter            Event filter to be tested before passing the event to the event handler.
+     * @param handler           Event handler to be used to process the event.
+     * @param exceptionHandlers Exception handlers to be used in case an unchecked exception is thrown.
+     * @return True if the event was processed by the event handler, false otherwise.
+     */
     protected final boolean processEventThroughFilterAndHandler(Event<Object> event, EventFilter<Object> filter,
                                                                 EventHandler<Object> handler,
                                                                 Collection<ExceptionHandler> exceptionHandlers) {
@@ -54,9 +68,9 @@ public abstract class AbstractDispatcher implements Dispatcher {
 
         try {
             if ((filter == null) || filter.accept(event)) {
-                delivered = true;
                 LOGGER.debug("Handling event '{}' with handler '{}'", event, handler);
                 handler.handleEvent(event);
+                delivered = true;
             }
         } catch (Throwable t) {
             processUncheckedException(t, exceptionHandlers, event);
@@ -65,8 +79,21 @@ public abstract class AbstractDispatcher implements Dispatcher {
         return delivered;
     }
 
-    protected final void processUndeliveredEvent(Event<Object> event, Collection<EventHandler<Object>>
-            undeliveredEventHandlers, Collection<ExceptionHandler> exceptionHandlers) {
+    /**
+     * Passes the specified event to the specified undelivered event handlers.
+     * <p>
+     * If an exception is thrown during the processing of the event, the specified exception handlers will be used.
+     * <p>
+     * In theory, this method can be called by any concrete implementation of this class, since it can be considered as
+     * a basic building block of any dispatch logic.
+     *
+     * @param event                    Event to be processed.
+     * @param undeliveredEventHandlers Event handlers to be used to process the event.
+     * @param exceptionHandlers        Exception handlers to be used in case an unchecked exception is thrown.
+     */
+    protected final void processUndeliveredEvent(Event<Object> event,
+                                                 Collection<EventHandler<Object>> undeliveredEventHandlers,
+                                                 Collection<ExceptionHandler> exceptionHandlers) {
         for (EventHandler<Object> handler : undeliveredEventHandlers) {
             try {
                 LOGGER.debug("Processing undelivered event '{}' with undelivered event handler '{}'", event, handler);
@@ -77,8 +104,16 @@ public abstract class AbstractDispatcher implements Dispatcher {
         }
     }
 
-    protected final void processUncheckedException(Throwable t, Collection<ExceptionHandler>
-            exceptionHandlers, Event<?> event) {
+    /**
+     * Processes the specified exception with the specified exception handlers.
+     *
+     * @param t                 Exception to be processed.
+     * @param exceptionHandlers Handlers to be used to process the exception.
+     * @param event             Dispatched event for which the exception was thrown.
+     */
+    protected final void processUncheckedException(Throwable t,
+                                                   Collection<ExceptionHandler> exceptionHandlers,
+                                                   Event<?> event) {
         if ((exceptionHandlers == null) || exceptionHandlers.isEmpty()) {
             if (t instanceof Error) {
                 throw (Error) t;

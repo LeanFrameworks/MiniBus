@@ -42,30 +42,78 @@ import java.util.HashSet;
  */
 public class SimpleChannel implements Channel {
 
+    /**
+     * Name that can be used, for example, for logging or debugging purposes.
+     */
     private final String name;
 
+    /**
+     * Sub-channels into which this channel can flow.
+     */
     private final Collection<Channel> subChannels;
 
+    /**
+     * Constructor.
+     * <p>
+     * A default, unique name will be used.
+     */
     public SimpleChannel() {
         this(null, (Collection<Channel>) null);
     }
 
+    /**
+     * Constructor.
+     * <p>
+     * A default, unique name will be used.
+     *
+     * @param subChannels Sub-channels into which this channel can flow.
+     */
     public SimpleChannel(Channel... subChannels) {
         this(null, Arrays.asList(subChannels));
     }
 
+    /**
+     * Constructor.
+     * <p>
+     * A default, unique name will be used.
+     *
+     * @param subChannels Sub-channels into which this channel can flow.
+     */
     public SimpleChannel(Collection<Channel> subChannels) {
         this(null, subChannels);
     }
 
+    /**
+     * Constructor.
+     * <p>
+     * If no name is given, a default, unique name will be used.
+     *
+     * @param name Name that can be used, for example, for logging or debugging purposes.
+     */
     public SimpleChannel(String name) {
         this(name, (Collection<Channel>) null);
     }
 
+    /**
+     * Constructor.
+     * <p>
+     * If no name is given, a default, unique name will be used.
+     *
+     * @param name        Name that can be used, for example, for logging or debugging purposes.
+     * @param subChannels Sub-channels into which this channel can flow.
+     */
     public SimpleChannel(String name, Channel... subChannels) {
         this(name, Arrays.asList(subChannels));
     }
 
+    /**
+     * Constructor.
+     * <p>
+     * If no name is given, a default, unique name will be used.
+     *
+     * @param name        Name that can be used, for example, for logging or debugging purposes.
+     * @param subChannels Sub-channels into which this channel can flow.
+     */
     public SimpleChannel(String name, Collection<Channel> subChannels) {
         if (name == null) {
             this.name = Channel.super.getName();
@@ -79,23 +127,44 @@ public class SimpleChannel implements Channel {
         }
     }
 
+    /**
+     * @see Channel#getName()
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets the sub-channels into which this channel can flow.
+     *
+     * @return Sub-channels.
+     */
     public Collection<Channel> getSubChannels() {
         return subChannels;
     }
 
+    /**
+     * Adds the specified sub-channel into which this channel can flow.
+     *
+     * @param channel Sub-channel to be added.
+     */
     public void addSubChannel(Channel channel) {
         subChannels.add(channel);
     }
 
+    /**
+     * Removes the specified sub-channel into which this channel can no longer flow.
+     *
+     * @param channel Sub-channel to be removed.
+     */
     public void removeSubChannel(Channel channel) {
         subChannels.remove(channel);
     }
 
+    /**
+     * @see Channel#flowsInto(Channel)
+     */
     @Override
     public boolean flowsInto(Channel channel) {
         boolean result = false;
