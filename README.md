@@ -31,3 +31,18 @@ events are being dispatched or processed by event handlers.
 * **Ready to use:** No need to create classes for each channel, topic, event, filter or handler. The provided simple
 implementations can be used for most use cases.
 * **Flexible and extensible:** The event bus is unopinionated and can easily be extended for more use cases.
+
+# Example
+
+Here is the simplest example to get started:
+
+```
+// Create a topic
+Topic<String> logEntry = new SimpleTopic<>();
+
+// Add an event listener for the topic
+StaticEventBus.subscribe(logEntry, e -> System.out.println("Something happened: " + e.getContent()));
+
+// Publish something on that topic
+StaticEventBus.publish(logEntry, "this is the reason");
+```

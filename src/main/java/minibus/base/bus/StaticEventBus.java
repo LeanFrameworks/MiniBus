@@ -33,9 +33,9 @@ import minibus.api.Event;
 import minibus.api.EventFilter;
 import minibus.api.EventHandler;
 import minibus.api.Topic;
-import minibus.base.dispatcher.FxApplicationThreadDispatcher;
+import minibus.base.dispatcher.SingleThreadDispatcher;
 
-import static minibus.base.dispatcher.AbstractUIThreadDispatcher.NestedDispatchStrategy.QUEUE;
+import static minibus.base.dispatcher.SingleThreadDispatcher.NestedDispatchStrategy.QUEUE;
 
 /**
  * Static version of a {@link SimpleEventBus} that can be used when a single instance is needed and must be accessible
@@ -46,7 +46,7 @@ public final class StaticEventBus {
     /**
      * Single instance of the event bus.
      */
-    private static SimpleEventBus eventBus = new SimpleEventBus(new FxApplicationThreadDispatcher(QUEUE));
+    private static SimpleEventBus eventBus = new SimpleEventBus(new SingleThreadDispatcher(QUEUE));
 
     /**
      * Private constructor utility class.
@@ -60,7 +60,7 @@ public final class StaticEventBus {
      *
      * @param dispatcher Dispatch strategy to be used.
      */
-    public static void initEventBus(Dispatcher dispatcher) {
+    public static void init(Dispatcher dispatcher) {
         eventBus = new SimpleEventBus(dispatcher);
     }
 
