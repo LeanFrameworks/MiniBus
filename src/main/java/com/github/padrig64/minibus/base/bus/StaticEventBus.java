@@ -1,6 +1,4 @@
 /*
- * %%Ignore-License
- *
  * Copyright (c) 2017, MiniBus Authors
  * All rights reserved.
  *
