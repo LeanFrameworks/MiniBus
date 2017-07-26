@@ -11,7 +11,7 @@
 
     <groupId>com.github.padrig64</groupId>
     <artifactId>minibus</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>MiniBus</name>
@@ -29,7 +29,7 @@
         <connection>scm:git:git@github.com:padrig64/MiniBus.git</connection>
         <developerConnection>scm:git:git@github.com:padrig64/MiniBus.git</developerConnection>
         <url>http://github.com/padrig64/minibus/tree/master</url>
-      <tag>minibus-0.0.2</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <developers>
