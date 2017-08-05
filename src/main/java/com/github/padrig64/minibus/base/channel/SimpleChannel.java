@@ -36,6 +36,8 @@ import java.util.HashSet;
  * Simple implementation of a channel.
  * <p>
  * The other channels it can flow into can be specified as sub-channels.
+ * <p>
+ * Note that two instances having the same contents will not be considered equal.
  */
 public class SimpleChannel implements Channel {
 

@@ -1,4 +1,6 @@
+* See TODOs and FIXMEs in the source code
 * Event timestamp
+* Temporarily inhibit events with DISCARD and QUEUE strategies
 * Topics with multiple parents (a topic can be covered by several other topics)
 * (Time?) validity per topic or per event/content
 * Don't even send expired messages?
@@ -17,6 +19,7 @@
 * Wait for response, with(out) timeout (see Mycila PubSub)
 * Multicast (channel)
 * Regex filtering
+* Consume events
 * Veto
 * Singleton, utility class, multiple buses/dispatchers
 * Use of annotated method interfaces for publishing and consuming events (see Mycila PubSub)

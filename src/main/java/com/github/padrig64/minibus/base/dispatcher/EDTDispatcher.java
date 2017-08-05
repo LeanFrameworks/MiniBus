@@ -27,22 +27,39 @@ package com.github.padrig64.minibus.base.dispatcher;
 
 import javax.swing.SwingUtilities;
 
+/**
+ * Dispatcher strategy dispatching all on the AWT/SWing Event Dispatch Thread.
+ *
+ * @see SwingUtilities#invokeLater(Runnable)
+ */
 public class EDTDispatcher extends AbstractUIThreadDispatcher {
 
+    /**
+     * @see AbstractUIThreadDispatcher#AbstractUIThreadDispatcher(NestedDispatchStrategy)
+     */
     public EDTDispatcher(NestedDispatchStrategy nestedDispatchStrategy) {
         super(nestedDispatchStrategy);
     }
 
+    /**
+     * @see AbstractUIThreadDispatcher#dispose()
+     */
     @Override
     public void dispose() {
         // Nothing to be done
     }
 
+    /**
+     * @see AbstractUIThreadDispatcher#isUIThread()
+     */
     @Override
     protected boolean isUIThread() {
         return SwingUtilities.isEventDispatchThread();
     }
 
+    /**
+     * @see AbstractUIThreadDispatcher#runLaterOnUIThread(Runnable)
+     */
     @Override
     protected void runLaterOnUIThread(Runnable runnable) {
         SwingUtilities.invokeLater(runnable);

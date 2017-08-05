@@ -29,6 +29,8 @@ import com.github.padrig64.minibus.api.Topic;
 
 /**
  * Simple implementation of a topic that can be named (e.g. for logging and debugging purposes).
+ * <p>
+ * Note that two instances having the same contents will not be considered equal.
  *
  * @param <C> Type of content that can be sent on this topic.
  */

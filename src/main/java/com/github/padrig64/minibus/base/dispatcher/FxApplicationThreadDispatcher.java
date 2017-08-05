@@ -27,22 +27,41 @@ package com.github.padrig64.minibus.base.dispatcher;
 
 import javafx.application.Platform;
 
+import javax.swing.SwingUtilities;
+
+/**
+ * Dispatcher strategy dispatching all on the JavaFX Application Thread.
+ *
+ * @see SwingUtilities#invokeLater(Runnable)
+ */
 public class FxApplicationThreadDispatcher extends AbstractUIThreadDispatcher {
 
+    /**
+     * @see AbstractUIThreadDispatcher#AbstractUIThreadDispatcher(NestedDispatchStrategy)
+     */
     public FxApplicationThreadDispatcher(NestedDispatchStrategy nestedDispatchStrategy) {
         super(nestedDispatchStrategy);
     }
 
+    /**
+     * @see AbstractUIThreadDispatcher#dispose()
+     */
     @Override
     public void dispose() {
         // Nothing to be done
     }
 
+    /**
+     * @see AbstractUIThreadDispatcher#isUIThread()
+     */
     @Override
     protected boolean isUIThread() {
         return Platform.isFxApplicationThread();
     }
 
+    /**
+     * @see AbstractUIThreadDispatcher#runLaterOnUIThread(Runnable)
+     */
     @Override
     protected void runLaterOnUIThread(Runnable runnable) {
         Platform.runLater(runnable);

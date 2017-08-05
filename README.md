@@ -24,7 +24,8 @@ like.
 * **Channel flows:** Channels can have sub-channels. A parent channel can flow into sub-channels but not the other way
 around. For example, events sent on the broadcast channel will be received by all event handlers listening on any
 channel. A parent channel may know its children, but a sub-channel does not know its parent.
-* **Dispatches:** Different dispatch strategies can be chosen for an event bus (synchronous, asynchronous, dispatch on EDT or FX Application Thread, etc.).
+* **Dispatchers:** Different dispatch strategies can be chosen for an event bus (synchronous, asynchronous, dispatch on
+EDT or FX Application Thread, etc.).
 * **Undelivered event handlers:** Handlers can be defined to process undelivered events, for example, for logging and
 debugging purposes.
 * **Unchecked exception handlers:** Handlers can be defined to process unchecked exceptions that may be thrown the

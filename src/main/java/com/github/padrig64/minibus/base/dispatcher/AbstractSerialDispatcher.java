@@ -37,6 +37,9 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+/**
+ * Abstract implementation of a dispatcher processing events in a serial manner, one at a time.
+ */
 public abstract class AbstractSerialDispatcher extends AbstractDispatcher {
 
     /**
@@ -44,6 +47,9 @@ public abstract class AbstractSerialDispatcher extends AbstractDispatcher {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractSerialDispatcher.class);
 
+    /**
+     * Events in the queue that still need to be processed.
+     */
     private final Queue<QueueEntry> queuedEvents = new LinkedList<>();
 
     private int nestedDispatchCount = 0;

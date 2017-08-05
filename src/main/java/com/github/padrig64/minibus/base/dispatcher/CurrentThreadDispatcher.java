@@ -35,6 +35,10 @@ import org.slf4j.LoggerFactory;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * Dispatcher strategy dispatching events on the current thread (whatever it may be when the {@link #dispatch(Event,
+ * Map, Collection, Collection)} method is called).
+ */
 public class CurrentThreadDispatcher extends AbstractSerialDispatcher {
 
     /**

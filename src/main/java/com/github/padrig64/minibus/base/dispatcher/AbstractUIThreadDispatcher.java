@@ -35,6 +35,10 @@ import org.slf4j.LoggerFactory;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * Abstract implementation of a dispatcher strategy dispatching event in a serial manner on a single UI thread (e.g.
+ * EDT, FX application thread, etc.).
+ */
 public abstract class AbstractUIThreadDispatcher extends AbstractSerialDispatcher {
 
     /**
@@ -44,6 +48,11 @@ public abstract class AbstractUIThreadDispatcher extends AbstractSerialDispatche
 
     private final NestedDispatchStrategy nestedDispatchStrategy;
 
+    /**
+     * Constructor.
+     *
+     * @param nestedDispatchStrategy Strategy to dispatch events while an event is already being dispatched.
+     */
     public AbstractUIThreadDispatcher(NestedDispatchStrategy nestedDispatchStrategy) {
         this.nestedDispatchStrategy = nestedDispatchStrategy;
     }

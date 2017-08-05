@@ -27,6 +27,8 @@ package com.github.padrig64.minibus.api;
 
 /**
  * Entity holding the content that is published by publishers and received by event handlers.
+ * <p>
+ * Note that two instances having the same contents will not be considered equal.
  *
  * @param <C> Type of content in the event.
  */
