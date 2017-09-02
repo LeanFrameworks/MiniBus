@@ -25,8 +25,6 @@
 
 package com.github.padrig64.minibus.api;
 
-import javax.annotation.Generated;
-
 /**
  * Entity holding the content that is published by publishers and received by event handlers.
  *
@@ -110,28 +108,6 @@ public class Event<C> {
      */
     public C getContent() {
         return content;
-    }
-
-    @Generated("intellij")
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Event<?> event = (Event<?>) o;
-
-        if (topic != null ? !topic.equals(event.topic) : event.topic != null) return false;
-        if (channel != null ? !channel.equals(event.channel) : event.channel != null) return false;
-        return !(content != null ? !content.equals(event.content) : event.content != null);
-    }
-
-    @Generated("intellij")
-    @Override
-    public int hashCode() {
-        int result = topic != null ? topic.hashCode() : 0;
-        result = 31 * result + (channel != null ? channel.hashCode() : 0);
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        return result;
     }
 
     @Override

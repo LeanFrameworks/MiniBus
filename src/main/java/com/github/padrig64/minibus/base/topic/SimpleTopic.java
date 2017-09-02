@@ -27,8 +27,6 @@ package com.github.padrig64.minibus.base.topic;
 
 import com.github.padrig64.minibus.api.Topic;
 
-import javax.annotation.Generated;
-
 /**
  * Simple implementation of a topic that can be named (e.g. for logging and debugging purposes).
  *
@@ -108,26 +106,6 @@ public class SimpleTopic<C> implements Topic<C> {
     @Override
     public Topic<? super C> getParentTopic() {
         return parent;
-    }
-
-    @Generated("intellij")
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SimpleTopic<?> that = (SimpleTopic<?>) o;
-
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return !(parent != null ? !parent.equals(that.parent) : that.parent != null);
-    }
-
-    @Generated("intellij")
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (parent != null ? parent.hashCode() : 0);
-        return result;
     }
 
     @Override

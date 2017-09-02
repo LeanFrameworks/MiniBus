@@ -27,7 +27,6 @@ package com.github.padrig64.minibus.base.channel;
 
 import com.github.padrig64.minibus.api.Channel;
 
-import javax.annotation.Generated;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -178,26 +177,6 @@ public class SimpleChannel implements Channel {
             }
         }
 
-        return result;
-    }
-
-    @Generated("intellij")
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SimpleChannel that = (SimpleChannel) o;
-
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return !(subChannels != null ? !subChannels.equals(that.subChannels) : that.subChannels != null);
-    }
-
-    @Generated("intellij")
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (subChannels != null ? subChannels.hashCode() : 0);
         return result;
     }
 
