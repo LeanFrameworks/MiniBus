@@ -1,4 +1,4 @@
-Copyright (c) 2015, MiniBus Authors
+Copyright (c) 2015, LeanFrameworks
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

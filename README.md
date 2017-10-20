@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/padrig64/MiniBus.svg?branch=master)](https://travis-ci.org/padrig64/MiniBus)
+[![Build Status](https://travis-ci.org/LeanFrameworks/MiniBus.svg?branch=master)](https://travis-ci.org/leanframeworks/MiniBus)
 
 Yet another in-JVM pub/sub event bus for Java 8.
 

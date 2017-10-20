@@ -9,26 +9,26 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.github.padrig64</groupId>
+    <groupId>com.github.leanframeworks</groupId>
     <artifactId>minibus</artifactId>
     <version>0.1.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>MiniBus</name>
     <description>In-JVM pub/sub event bus for Java 8</description>
-    <url>https://github.com/padrig64/MiniBus</url>
+    <url>https://github.com/leanframeworks/MiniBus</url>
 
     <licenses>
         <license>
             <name>Simplified BSD License</name>
-            <url>https://raw.github.com/padrig64/MiniBus/master/LICENSE.md</url>
+            <url>https://raw.github.com/leanframeworks/MiniBus/master/LICENSE.md</url>
         </license>
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:padrig64/MiniBus.git</connection>
-        <developerConnection>scm:git:git@github.com:padrig64/MiniBus.git</developerConnection>
-        <url>http://github.com/padrig64/minibus/tree/master</url>
+        <connection>scm:git:git@github.com:leanframeworks/MiniBus.git</connection>
+        <developerConnection>scm:git:git@github.com:leanframeworks/MiniBus.git</developerConnection>
+        <url>http://github.com/leanframeworks/minibus/tree/master</url>
       <tag>HEAD</tag>
   </scm>
 

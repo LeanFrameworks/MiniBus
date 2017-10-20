@@ -1,3 +1,10 @@
+# Version 1.0.0
+
+* Transferred ownership to LeanFrameworks
+* Adapted package names accordingly.
+* Adapted Maven group ID accordingly.
+* Adapted license accordingly.
+
 # Version 0.1.0
 
 * Removed custom implementation` of `hashCode()` and `equals() from `SimpleTopic`, `SimpleChannel` and `Event`classes so
