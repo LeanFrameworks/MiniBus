@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/badge/license-2--clause%20BSD-blue.svg)](https://raw.githubusercontent.com/LeanFrameworks/MiniBus/master/LICENSE.md)
 [![Build Status](https://travis-ci.org/LeanFrameworks/MiniBus.svg?branch=master)](https://travis-ci.org/LeanFrameworks/MiniBus)
+[![Latest Release](https://img.shields.io/github/release/LeanFrameworks/MiniBus.svg)](https://github.com/LeanFrameworks/MiniBus/releases/latest)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=com.github.leanframeworks:minibus&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.leanframeworks:minibus)
 
 Yet another in-JVM pub/sub event bus for Java 8.
